@@ -1,0 +1,184 @@
+---
+// src/pages/index.astro
+import background from '../assets/diffbg.jpg';
+import Navbar from '../components/Navbar.tsx';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- Background Image -->
+  <div id="about-container" class="relative min-h-[100vh] w-full overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+    <img 
+      class="absolute backdrop-blur-md inset-0 w-full h-full object-cover opacity-70 z-0" 
+      id="background" 
+      src={background.src} 
+      alt="Background" 
+      fetchpriority="high" 
+    />
+    
+    <!-- Overlay for better contrast -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/30 z-5"></div>
+    
+    <Navbar client:load />
+
+    <!-- Cards Container -->
+    <section class="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-6 py-20">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 drop-shadow-sm">
+          Islamic Resources
+        </h2>
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-sm">
+          Discover our collection of spiritual guides and planners to enhance your Islamic journey
+        </p>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+        
+        <!-- Card 1 -->
+        <a target="_blank" href="https://marwayousufk.gumroad.com/l/islam101?layout=profile" class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 hover:scale-105 hover:bg-white/95 border border-white/20 cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="relative z-10 w-full">
+            <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
+              <img 
+                src="/public/pic1.jpg" 
+                alt="a journey into islām" 
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-emerald-700 transition-colors duration-200">
+                a journey into islām
+              </h3>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Begin your spiritual journey with comprehensive Islamic guidance
+              </p>
+              <div class="flex items-center justify-center space-x-2">
+                <span class="text-lg font-semibold text-emerald-600">$0+</span>
+                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a target="_blank" href="https://marwayousufk.gumroad.com/l/kmnbp?layout=profile" class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 hover:scale-105 hover:bg-white/95 border border-white/20 cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="relative z-10 w-full">
+            <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
+              <img 
+                src="/public/pic2.jpg" 
+                alt="ramadān planner '25" 
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors duration-200">
+                ramadān planner '25
+              </h3>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Organize your holy month with this comprehensive planner
+              </p>
+              <div class="flex items-center justify-center space-x-2">
+                <span class="text-lg font-semibold text-blue-600">$0+</span>
+                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a target="_blank" href="https://marwayousufk.gumroad.com/l/dhikranddua?layout=profile" class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 hover:scale-105 hover:bg-white/95 border border-white/20 cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="relative z-10 w-full">
+            <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
+              <img 
+                src="/public/pic3.jpg" 
+                alt="dhikr and du'ā guide" 
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-700 transition-colors duration-200">
+                dhikr and du'ā guide
+              </h3>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Essential remembrance and supplication collection
+              </p>
+              <div class="flex items-center justify-center space-x-2">
+                <span class="text-lg font-semibold text-purple-600">$0+</span>
+                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a target="_blank" href="https://marwayousufk.gumroad.com/l/dhulhijjahguide?layout=profile" class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 hover:scale-105 hover:bg-white/95 border border-white/20 cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div class="relative z-10 w-full">
+            <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
+              <img 
+                src="/public/pic2.jpg" 
+                alt="dhul-hijjah guide" 
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-amber-700 transition-colors duration-200">
+                dhul-hijjah guide
+              </h3>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Complete guide for the blessed month of pilgrimage
+              </p>
+              <div class="flex items-center justify-center space-x-2">
+                <span class="text-lg font-semibold text-amber-600">$0+</span>
+                <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Custom styles for better text truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Smooth glassmorphism effect */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Enhanced shadow on hover */
+  .hover\:shadow-2xl:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Smooth gradient overlay */
+  .bg-gradient-to-t {
+    background: linear-gradient(to top, var(--tw-gradient-stops));
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+// src/pages/index.astro
+import background from '../assets/impressionist-home-bg.jpg';
+import Navbar from '../components/Navbar.tsx';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+
+  <!-- Background Image -->
+  <div id="about-container" class="relative h-[100vh] w-full flex items-center justify-center overflow-hidden">
+    <img class="absolute inset-0 w-full h-full object-cover opacity-80 z-0" id="background" src={background.src} alt="Background" fetchpriority="high" />
+    <Navbar client:load />
+    <main id="about-content" class="relative z-20 flex flex-col items-center justify-center w-full max-w-3xl px-6 py-12">
+      <h1 class="cardo-regular text-4xl md:text-5xl text-center mb-6 text-gray-900">Life in Sujud</h1>
+      <p class="cardo-regular text-lg md:text-xl text-center text-gray-700 mb-8">
+        <em>life in sujūd</em> was created in memory of janisar hussayn – a beloved soul returned to his Rabb but carried into every du’ā.
+        <br/><br/>
+        it began in the stillness that follows loss, where grief softened into <em>sujūd</em>, and longing found its way back to Allāh عَزَّ وَجَلَّ<br/><br/>
+        this space is a quiet act of love and surrender – a form of <em>ṣabr</em>, a thread of <em>tawakkul</em>, a prayer stretched across time. dedicated as <em>ṣadaqah jāriyah</em> for his <em>ākhirah</em> and meant to serve as a platform for all those learning to live through longing – with the Creator at the centre of their ache; as ultimately everything returns to Him… some through <em>maut</em>, some through <em>sujūd</em>.
+        <br/><br/>
+        <span class="text-2xl text-gray-800">وَاسْجُدْ وَٱقْتَرِب</span><br/>
+        <span class="text-gray-500 text-base">“and prostrate, and draw near [to Him].” — Surah al-ʿAlaq (96:19)</span>
+      </p>
+      <div class="cardo-regular text-base md:text-lg text-gray-800 leading-relaxed space-y-4 text-center">
+        <!-- You may remove or repurpose this block if not needed anymore -->
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<style>
+    /* .cardo-regular {
+  font-family: "Cardo";
+  font-weight: 400;
+  letter-spacing: 1.4px;
+  list-style: none;
+  line-height: 1.6;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 14.4px;
+  color: #000000;
+}
+.cardo-regular:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration-thickness: 0.8px;
+    text-underline-offset: 0.2em;
+  } */
+</style>
