@@ -1,6 +1,7 @@
 ---
 import TransparentNavbar from '../components/Navbar';
 import Layout from '../layouts/Layout.astro';
+import background from '../assets/aboutblogresources.jpg';
 import { getPosts } from '../lib/getPosts';
 
 // Dummy blog data
@@ -15,7 +16,7 @@ console.log(blogs[0], 'yeeeeeeeee')
   <div id="blog-list-container" class="relative w-full flex items-center justify-center overflow-hidden min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
     <img 
       class="absolute inset-0 w-full h-full object-cover opacity-70 z-0" 
-      src="/src/assets/impressionist-home-bg.jpg" 
+      src={background.src}
       alt="Background" 
       fetchpriority="high" 
     />

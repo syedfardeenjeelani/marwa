@@ -1,8 +1,14 @@
 ---
 // src/pages/index.astro
-import background from '../assets/diffbg.jpg';
 import Navbar from '../components/Navbar.tsx';
 import Layout from '../layouts/Layout.astro';
+import pic1 from '../assets/pic1.jpg';
+import pic2 from '../assets/pic2.jpg';
+import pic3 from '../assets/pic3.jpg';
+import pic4 from '../assets/pic4.jpg';
+
+import background from '../assets/aboutblogresources.jpg';
+
 ---
 
 <Layout>
@@ -43,7 +49,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative z-10 w-full">
             <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
               <img 
-                src="/public/pic1.jpg" 
+                src={pic1.src} 
                 alt="a journey into islām" 
                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
               />
@@ -72,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative z-10 w-full">
             <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
               <img 
-                src="/public/pic2.jpg" 
+               src={pic2.src} 
                 alt="ramadān planner '25" 
                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
               />
@@ -101,7 +107,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative z-10 w-full">
             <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
               <img 
-                src="/public/pic3.jpg" 
+                src={pic3.src} 
                 alt="dhikr and du'ā guide" 
                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
               />
@@ -130,7 +136,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative z-10 w-full">
             <div class="relative overflow-hidden rounded-xl mb-4 shadow-md">
               <img 
-                src="/public/pic2.jpg" 
+                src={pic4.src} 
                 alt="dhul-hijjah guide" 
                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110" 
               />
