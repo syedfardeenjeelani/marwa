@@ -1,6 +1,7 @@
 --- 
 import "../styles/global.css";
 import icon from '/src/assets/logo.jpeg'
+import { ToastContainer } from 'react-toastify';
 ---
 
 <!doctype html>
@@ -20,6 +21,7 @@ import icon from '/src/assets/logo.jpeg'
 	</head>
 	<body>
 		<slot />
+		<ToastContainer/>
 	</body>
 </html>
 

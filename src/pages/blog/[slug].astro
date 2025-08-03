@@ -159,10 +159,8 @@ const shareUrl = `${baseUrl}/blog/${blog.slug.current}`;
       </div>
     </section>
 
-    <!-- Copy Success Toast -->
-    <div id="copy-toast" class="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
-      Link copied to clipboard!
-    </div>
+    <!-- Toast Container for React Toastify -->
+    <div id="toast-root"></div>
   </div>
 </Layout>
 
@@ -287,15 +285,146 @@ const shareUrl = `${baseUrl}/blog/${blog.slug.current}`;
     outline-offset: 2px;
   }
 
-  /* Toast animation */
-  .show-toast {
-    transform: translateX(0) !important;
+  /* Custom Toast Styles */
+  .Toastify__toast {
+    border-radius: 12px;
+    font-family: "Cardo", serif;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+  }
+
+  .Toastify__toast--success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .Toastify__toast--error {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+  }
+
+  .Toastify__progress-bar {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .Toastify__toast-body {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .Toastify__close-button {
+    color: white;
+    opacity: 0.8;
+  }
+
+  .Toastify__close-button:hover {
+    opacity: 1;
+  }
+
+  /* Animation enhancements */
+  @keyframes slideInRight {
+    from {
+      transform: translate3d(110%, 0, 0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  .Toastify__toast--top-right {
+    animation: slideInRight 0.3s ease-out;
   }
 </style>
 
 <script>
+  // Install: npm install react-toastify
+  import { toast, ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+  // Initialize Toast Container
+  function initToastContainer() {
+    const toastRoot = document.getElementById('toast-root');
+    if (toastRoot && !toastRoot.hasChildNodes()) {
+      import('react').then(React => {
+        import('react-dom/client').then(({ createRoot }) => {
+          const root = createRoot(toastRoot);
+          root.render(
+            React.createElement(ToastContainer, {
+              position: "top-right",
+              autoClose: 2500,
+              hideProgressBar: false,
+              newestOnTop: true,
+              closeOnClick: true,
+              rtl: false,
+              pauseOnFocusLoss: true,
+              draggable: true,
+              pauseOnHover: true,
+              theme: "light",
+              toastClassName: "custom-toast",
+              bodyClassName: "custom-toast-body",
+              progressClassName: "custom-toast-progress",
+            })
+          );
+        });
+      });
+    }
+  }
+
+  // Beautiful toast functions
+  function showSuccessToast() {
+    toast.success('✨ Link copied to clipboard!', {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      style: { background: 'linear-gradient(135deg, #f5f7fa, #e4e9f0)',
+
+        color: 'black',
+        borderRadius: '12px',
+        fontWeight: '500',
+        fontSize: '14px', 
+        fontFamily: '"Cardo", serif',
+        border: 'none'
+      }
+    });
+  }
+
+  function showErrorToast() {
+    toast.error('❌ Failed to copy link', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      style: {
+        background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)',
+        color: 'white',
+        borderRadius: '12px',
+        fontWeight: '500',
+        fontSize: '14px',
+        boxShadow: '0 8px 25px rgba(255, 107, 107, 0.3)',
+        fontFamily: '"Cardo", serif',
+        border: 'none'
+      }
+    });
+  }
+
   // Reading progress bar
   document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Toast Container
+    setTimeout(initToastContainer, 100);
+
     const progressBar = document.createElement('div');
     progressBar.style.cssText = `
       position: fixed;
@@ -316,14 +445,18 @@ const shareUrl = `${baseUrl}/blog/${blog.slug.current}`;
     });
   });
 
-  // Copy link functionality
+  // Enhanced Copy link functionality with beautiful toast
   document.addEventListener('DOMContentLoaded', function() {
     const copyBtn = document.getElementById('copy-link-btn');
-    const toast = document.getElementById('copy-toast');
     
-    if (copyBtn && toast) {
+    if (copyBtn) {
       copyBtn.addEventListener('click', async function() {
         const url = this.getAttribute('data-url');
+        
+        // Add loading state
+        const originalContent = this.innerHTML;
+        this.innerHTML = '<div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>';
+        this.disabled = true;
         
         try {
           if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -342,16 +475,19 @@ const shareUrl = `${baseUrl}/blog/${blog.slug.current}`;
             textArea.remove();
           }
           
-          // Show toast
-          toast.classList.add('show-toast');
-          
-          // Hide toast after 2 seconds
-          setTimeout(() => {
-            toast.classList.remove('show-toast');
-          }, 2000);
+          // Show beautiful success toast
+          showSuccessToast();
           
         } catch (err) {
           console.error('Failed to copy: ', err);
+          // Show beautiful error toast
+          showErrorToast();
+        } finally {
+          // Restore button state
+          setTimeout(() => {
+            this.innerHTML = originalContent;
+            this.disabled = false;
+          }, 500);
         }
       });
     }
