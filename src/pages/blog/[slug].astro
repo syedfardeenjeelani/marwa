@@ -40,7 +40,7 @@ console.log(extractedText, 'blog text extracted');
     <TransparentNavbar client:load />
     
     <!-- Main Content Container -->
-    <div class="max-w-4xl mx-auto px-6 py-24">
+    <div class="lg:max-w-4xl min-w-4xl  md:w-full mx-auto px-6 py-24">
       
       <!-- Breadcrumb -->
       <nav class="mb-8">
@@ -92,7 +92,7 @@ console.log(extractedText, 'blog text extracted');
       </div>
 
       <!-- Article Content -->
-      <article class="prose prose-lg md:prose-xl max-w-none">
+      <article class="prose-xl max-w-none">
         <div class="text-lg leading-relaxed text-gray-800 space-y-6">
           {extractedText.split('\n\n').filter((paragraph: string) => paragraph.trim()).map((paragraph: string, index: number) => (
             <p key={index} class={`${index === 0 ? "first-letter:text-6xl first-letter:font-bold first-letter:text-gray-900 first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-line:font-semibold text-xl" : ""}`}>
