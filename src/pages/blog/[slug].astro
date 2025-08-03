@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getPosts } from '../../lib/getPosts';
 import TransparentNavbar from '../../components/Navbar';
 import { Instagram, MessageCircle, Calendar, Clock, Copy } from 'lucide-react';
+import PortableTextRenderer from '../../components/PortableTextRenderer';
 
 // This function is required for dynamic routes
 export async function getStaticPaths() {
@@ -23,22 +24,11 @@ if (!blog) {
   return Astro.redirect('/404');
 }
 
-// Extract text from Sanity block content with proper null checking
-const extractedText = blog.body
-  ?.map((block: any) => 
-    block.children
-      ?.map((child: any) => child.text || '')
-      .join('') || ''
-  )
-  .join(' ') || 'No content available';
-
 // Create proper share URL for production
 const baseUrl = import.meta.env.PROD 
   ? 'https://lifeinsujud.blog' // Replace with your actual domain
   : 'https://www.lifeinsujud.blog';
 const shareUrl = `${baseUrl}/blog/${blog.slug.current}`;
-
-console.log(extractedText, 'blog text extracted');
 
 ---
 
@@ -99,11 +89,7 @@ console.log(extractedText, 'blog text extracted');
       <!-- Article Content -->
       <article class="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none">
         <div class="text-base sm:text-lg leading-relaxed cardo-regular text-gray-800 space-y-4 sm:space-y-6">
-          {extractedText.split('\n\n').filter((paragraph: string) => paragraph.trim()).map((paragraph: string, index: number) => (
-            <p key={index} class={`${index === 0 ? "first-letter:text-4xl sm:first-letter:text-5xl lg:first-letter:text-6xl first-letter:font-bold first-letter:text-gray-900 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3 first-letter:mt-1 first-line:font-semibold text-lg sm:text-xl" : ""}`}>
-              {paragraph.trim()}
-            </p>
-          ))}
+         <PortableTextRenderer value={blog.body} />
         </div>
       </article>
 
@@ -126,45 +112,25 @@ console.log(extractedText, 'blog text extracted');
           <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             <span class="text-sm font-medium text-gray-600 flex-shrink-0">Share:</span>
             <div class="flex space-x-2 overflow-x-auto">
-              <a 
-               href={`https://wa.me/?text=${encodeURIComponent(blog.title + ' - ' + Astro.url.href)}`}
-               target="_blank"
-               rel="noopener noreferrer"
-               class="p-2 sm:p-2.5 rounded-full bg-gray-600 text-white hover:bg-green-700 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
-               aria-label="Share on WhatsApp"
+              <button 
+               id="copy-link-btn"
+               class="p-2 sm:p-2.5 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
+               aria-label="Copy Link"
+               data-url={shareUrl}
              >
                <Copy className="w-4 h-4" />
-             </a>
+             </button>
               <a 
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                href={`https://www.instagram.com`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-2 sm:p-2.5 rounded-full bg-pink-600 text-white hover:bg-blue-700 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
-                aria-label="Share on Facebook"
+                class="p-2 sm:p-2.5 rounded-full bg-pink-600 text-white hover:bg-pink-700 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
+                aria-label="Share on Instagram"
               >
               <Instagram className="w-4 h-4"  />
-                <!-- <Facebook className="w-4 h-4" /> -->
               </a>
-              <!-- <a 
-                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(blog.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-2 sm:p-2.5 rounded-full bg-sky-500 text-white hover:bg-sky-600 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
-                aria-label="Share on Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a> -->
-              <!-- <a 
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-2 sm:p-2.5 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
-                aria-label="Share on LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a> -->
               <a 
-                href={`https://wa.me/?text=${encodeURIComponent(blog.title + ' - ' + Astro.url.href)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(blog.title + ' - ' + shareUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="p-2 sm:p-2.5 rounded-full bg-green-600 text-white hover:bg-green-700 transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]" 
@@ -192,6 +158,11 @@ console.log(extractedText, 'blog text extracted');
         </a>
       </div>
     </section>
+
+    <!-- Copy Success Toast -->
+    <div id="copy-toast" class="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+      Link copied to clipboard!
+    </div>
   </div>
 </Layout>
 
@@ -220,7 +191,7 @@ console.log(extractedText, 'blog text extracted');
     line-height: 1.6;
     /* text-transform: uppercase; */
     font-style: normal;
-    font-size: 1rem;
+    font-size:1.3rem;
     color: #000000;
   }
     .cardo-regular-title {
@@ -315,6 +286,11 @@ console.log(extractedText, 'blog text extracted');
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
+
+  /* Toast animation */
+  .show-toast {
+    transform: translateX(0) !important;
+  }
 </style>
 
 <script>
@@ -333,11 +309,52 @@ console.log(extractedText, 'blog text extracted');
     `;
     document.body.appendChild(progressBar);
 
-    window.addEventListener('scroll', function() {
+    document.addEventListener('scroll', function() {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (window.scrollY / windowHeight) * 100;
+      const scrolled = (document.documentElement.scrollTop / windowHeight) * 100;
       progressBar.style.width = Math.min(scrolled, 100) + '%';
     });
+  });
+
+  // Copy link functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const copyBtn = document.getElementById('copy-link-btn');
+    const toast = document.getElementById('copy-toast');
+    
+    if (copyBtn && toast) {
+      copyBtn.addEventListener('click', async function() {
+        const url = this.getAttribute('data-url');
+        
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            textArea.remove();
+          }
+          
+          // Show toast
+          toast.classList.add('show-toast');
+          
+          // Hide toast after 2 seconds
+          setTimeout(() => {
+            toast.classList.remove('show-toast');
+          }, 2000);
+          
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      });
+    }
   });
 
   // Smooth scrolling for internal links
