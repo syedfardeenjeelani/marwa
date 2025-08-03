@@ -39,7 +39,7 @@ console.log(blogs[0], 'yeeeeeeeee')
      {blogs ? <div class="grid grid-cols-1 md:grid-cols-2 cardo-regular lg:grid-cols-3 gap-8 w-full max-w-7xl">
         {blogs?.map((blog: any) => (
           <a 
-            href={`/blog/${blog.slug.current}`} 
+            href={`/blog/${blog?.slug?.current}`} 
             class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white/95 cursor-pointer"
           >
             

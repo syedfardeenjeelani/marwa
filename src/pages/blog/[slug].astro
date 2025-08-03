@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const blogs = await getPosts(); // You'll need this function in your sanity lib
   
   return blogs.map((blog: any) => ({
-    params: { slug: blog.slug.current },
+    params: { slug: blog?.slug?.current },
     props: { blog }, // Pass the blog data as props
   }));
 }
@@ -115,7 +115,7 @@ console.log(extractedText, 'blog text extracted');
             <span class="text-sm font-medium text-gray-600 flex-shrink-0">Tags:</span>
             <div class="flex flex-wrap gap-2">
               {blog.categories?.map((category: any, index: number) => (
-                <a key={index} href={`/blog/category/${category.slug}`} class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors">
+                <a key={index} href={`/blog/category/${category?.slug}`} class="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors">
                   #{category.title}
                 </a>
               ))}
