@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Mail, Newspaper, Instagram } from "lucide-react";
 import logo from '../assets/logo.jpeg';
 import '../styles/global.css'
+// import './navbar.css'
 // If using Vite or similar, logo will be an object with a 'src' property
 
 const navItems = [
@@ -52,7 +53,7 @@ export default function TransparentNavbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className="cardo-regular text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group"
+                className="cardo-regular-nav text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>

@@ -27,25 +27,25 @@ console.log(blogs[0], 'yeeeeeeeee')
     <div class="relative z-20 flex flex-col items-center w-full py-20 px-6">
       <!-- Page Header -->
       <div class="text-center mb-16">
-        <h1 class="cardo-regular text-4xl md:text-5xl text-center mb-4 text-gray-900 drop-shadow-sm">
+        <!-- <h1 class="cardo-regular text-4xl md:text-5xl text-center mb-4 text-gray-900 drop-shadow-sm">
           Blogs
-        </h1>
-        <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-sm">
+        </h1> -->
+        <!-- <p class="text-lg text-gray-700 max-w-2xl mx-auto cardo-regular-desc drop-shadow-sm">
           Discover insights, stories, and inspiration from our latest writings
-        </p>
+        </p> -->
       </div>
       
       <!-- Blog Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-        {blogs.map((blog: any) => (
+     {blogs ? <div class="grid grid-cols-1 md:grid-cols-2 cardo-regular lg:grid-cols-3 gap-8 w-full max-w-7xl">
+        {blogs?.map((blog: any) => (
           <a 
             href={`/blog/${blog.slug.current}`} 
             class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white/95 cursor-pointer"
           >
-            <!-- Hover gradient overlay -->
+            
             <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
             
-            <!-- Image Container -->
+            
             <div class="relative overflow-hidden">
               <img 
                 src={blog.mainImage.asset.url} 
@@ -54,7 +54,7 @@ console.log(blogs[0], 'yeeeeeeeee')
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              <!-- Date Badge -->
+          
               <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-md">
                 <span class="text-xs font-medium text-gray-700">
                   {new Date(blog.publishedAt).toLocaleDateString('en-US', { 
@@ -66,9 +66,8 @@ console.log(blogs[0], 'yeeeeeeeee')
               </div>
             </div>
             
-            <!-- Content Container -->
             <div class="relative z-20 p-6 flex flex-col gap-3">
-              <!-- Category/Tags (if available) -->
+            
               <div class="flex items-center gap-2 mb-1">
                 <span class="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full font-medium">
                   Article
@@ -77,18 +76,15 @@ console.log(blogs[0], 'yeeeeeeeee')
                   5 min read
                 </span>
               </div>
-              
-              <!-- Title -->
+               
               <h2 class="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-200 line-clamp-2 mb-2">
                 {blog.title}
               </h2>
-              
-              <!-- Description -->
+               
               <p class="text-gray-700 text-sm line-clamp-3 leading-relaxed mb-4">
                 {blog.description}
               </p>
-              
-              <!-- Read More Link -->
+               
               <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
                 <span class="text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors">
                   Read More
@@ -105,7 +101,9 @@ console.log(blogs[0], 'yeeeeeeeee')
             </div>
           </a>
         ))}
-      </div>
+      </div> : <div>
+        no blogs rn
+      </div>}
       
     </div>
   </div>
@@ -127,23 +125,36 @@ console.log(blogs[0], 'yeeeeeeeee')
     overflow: hidden;
   }
 
-  /* Enhanced Cardo font styling */
   .cardo-regular {
-    font-family: "Cardo", serif;
+    font-family: "Cardo";
     font-weight: 400;
     letter-spacing: 1.4px;
+    list-style: none;
     line-height: 1.6;
-    text-transform: none;
+    /* text-transform: uppercase; */
     font-style: normal;
+    font-size: 2rem;
     color: #000000;
   }
+   .cardo-regular-desc {
+    font-family: "Cardo";
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    list-style: none;
+    line-height: 1.6;
+    /* text-transform: uppercase; */
+    font-style: normal;
+    font-size: 1rem;
+    color: #000000;
+  }
+  /* Enhanced Cardo font styling
 
   .cardo-regular:hover {
     text-decoration: underline;
     cursor: pointer;
     text-decoration-thickness: 0.8px;
     text-underline-offset: 0.2em;
-  }
+  } */
 
   /* Smooth glassmorphism effect */
   .backdrop-blur-md {

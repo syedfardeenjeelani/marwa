@@ -28,19 +28,16 @@ import background from '../assets/aboutblogresources.jpg';
     <Navbar client:load />
 
     <!-- Cards Container -->
-    <section class="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-6 py-20">
+    <section class="relative z-10 flex  flex-col items-center justify-center w-full max-w-7xl mx-auto px-6 py-20">
       <!-- Section Header -->
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 drop-shadow-sm">
-          Islamic Resources
-        </h2>
-        <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-sm">
-          Discover our collection of spiritual guides and planners to enhance your Islamic journey
-        </p>
+        <!-- <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 cardo-regular  drop-shadow-sm">
+           Resources
+        </h2> -->
       </div>
 
       <!-- Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+      <div class="grid grid-cols-1 cardo-regular-cards sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
         
         <!-- Card 1 -->
         <a target="_blank" href="https://marwayousufk.gumroad.com/l/islam101?layout=profile" class="group relative bg-white/90 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center justify-between transition-all duration-300 hover:scale-105 hover:bg-white/95 border border-white/20 cursor-pointer">
@@ -60,9 +57,9 @@ import background from '../assets/aboutblogresources.jpg';
               <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-emerald-700 transition-colors duration-200">
                 a journey into islām
               </h3>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+              <!-- <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Begin your spiritual journey with comprehensive Islamic guidance
-              </p>
+              </p> -->
               <div class="flex items-center justify-center space-x-2">
                 <span class="text-lg font-semibold text-emerald-600">$0+</span>
                 <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
@@ -86,14 +83,14 @@ import background from '../assets/aboutblogresources.jpg';
             </div>
             
             <div class="text-center">
-              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors duration-200">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-400 transition-colors duration-200">
                 ramadān planner '25
               </h3>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+              <!-- <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Organize your holy month with this comprehensive planner
-              </p>
+              </p> -->
               <div class="flex items-center justify-center space-x-2">
-                <span class="text-lg font-semibold text-blue-600">$0+</span>
+                <span class="text-lg font-semibold text-blue-400">$0+</span>
                 <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
               </div>
             </div>
@@ -115,14 +112,14 @@ import background from '../assets/aboutblogresources.jpg';
             </div>
             
             <div class="text-center">
-              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-700 transition-colors duration-200">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-emerald-700 transition-colors duration-200">
                 dhikr and du'ā guide
               </h3>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+              <!-- <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Essential remembrance and supplication collection
-              </p>
+              </p> -->
               <div class="flex items-center justify-center space-x-2">
-                <span class="text-lg font-semibold text-purple-600">$0+</span>
+                <span class="text-lg font-semibold text-emerald-600">$0+</span>
                 <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
               </div>
             </div>
@@ -147,9 +144,9 @@ import background from '../assets/aboutblogresources.jpg';
               <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-amber-700 transition-colors duration-200">
                 dhul-hijjah guide
               </h3>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+              <!-- <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Complete guide for the blessed month of pilgrimage
-              </p>
+              </p> -->
               <div class="flex items-center justify-center space-x-2">
                 <span class="text-lg font-semibold text-amber-600">$0+</span>
                 <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Free</span>
@@ -186,5 +183,28 @@ import background from '../assets/aboutblogresources.jpg';
   /* Smooth gradient overlay */
   .bg-gradient-to-t {
     background: linear-gradient(to top, var(--tw-gradient-stops));
+  }
+
+  .cardo-regular {
+    font-family: "Cardo";
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    list-style: none;
+    line-height: 1.6;
+    /* text-transform: uppercase; */
+    font-style: normal;
+    font-size: 2rem;
+    color: #000000;
+  }
+   .cardo-regular-cards {
+    font-family: "Cardo";
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    list-style: none;
+    line-height: 1.6;
+    /* text-transform: uppercase; */
+    font-style: normal;
+    font-size: 1rem;
+    color: #000000;
   }
 </style>
