@@ -6,9 +6,9 @@ import '../styles/global.css'
 // If using Vite or similar, logo will be an object with a 'src' property
 
 const navItems = [
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'about', href: '/about' },
+  { label: 'blog', href: '/blog' },
+  { label: 'resources', href: '/resources' },
 ];
 
 const socialLinks = [
