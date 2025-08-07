@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import background from "../assets/aboutblogresources.jpg";
+import '../styles/global.css'
 
 const BlogsComponent = ({ blogs }: { blogs: any }) => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const BlogsComponent = ({ blogs }: { blogs: any }) => {
           </div>
 
           {blogs ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 cardo-regular-blog-text  lg:grid-cols-3 gap-8 w-full max-w-7xl">
               {blogs.map((blog:any, index:number) => (
                 <a
                   key={index}
